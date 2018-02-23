@@ -46,6 +46,48 @@ var trivia= {
                 b:{ text: "B: Humans", correct: true },
                 c:{ text: "C: Leftover food left out", correct: false},
             },
+        }, {
+            question: "Roger Patterson and Bob Gimlin famously claimed to have caught which beast on video in 1967?",
+            answers: {
+                a: { text: "A: Unicorn", correct: false },
+                b: { text: "B: Bigfoot", correct: true },
+                c: { text: "C: Jersey Devil", correct: false },
+            },
+        }, {
+            question: "Which of these is said to ward of Werewolves?",
+            answers: {
+                a: { text: "A: Household pets", correct: false },
+                b: { text: "B: Humans", correct: true },
+                c: { text: "C: Leftover food left out", correct: false },
+            },
+        }, {
+            question: "In which of these locations would you most likey find the Kraken?",
+            answers: {
+                a: { text: "A: A Desert oasis", correct: false },
+                b: { text: "B: A Dark Forest", correct: false },
+                c: { text: "C: The Ocean", correct: true },
+            },
+        }, {
+            question: "Medusa's gaze could turn a man to stone, but what was her hair made out of?",
+            answers: {
+                a: { text: "A: Stone", correct: false },
+                b: { text: "B: Snakes", correct: true },
+                c: { text: "C: Daggers", correct: false },
+            },
+        }, {
+            question: "Which British Saint is best known for slaying a Dragon?",
+            answers: {
+                a: { text: "A: St David", correct: false },
+                b: { text: "B: St George", correct: true },
+                c: { text: "C: St Dragonslayer", correct: false },
+            },
+        }, {
+            question: "In which year was the first recorded sighting of Scotland's Loch Ness Monster?",
+            answers: {
+                a: { text: "A: 1987", correct: false },
+                b: { text: "B: 1933", correct: true },
+                c: { text: "C: 1867", correct: false },
+            },
         }
     ],
     startGame: function(){
@@ -91,7 +133,7 @@ var trivia= {
         $("#answerB").attr("correct", randomQuestion.answers.b.correct);
         $("#answerC").html(randomQuestion.answers.c.text);
         $("#answerC").attr("correct", randomQuestion.answers.c.correct);
-        
+        trivia.questionArray.splice(trivia.randomQuestion, 1);
     },
 
     answerSelect: function() {
@@ -128,6 +170,7 @@ var trivia= {
             trivia.stop();
             $(".front-btn").show("slow");
         } else {
+        
         $("#answerDisplay").html("");
         trivia.timeLeft = 31;
         trivia.selected = 0;
