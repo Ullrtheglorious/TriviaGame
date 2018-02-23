@@ -3,17 +3,12 @@ var trivia= {
         $("#start").show();
         trivia.startGame();
     },
-    
-    tickSound: function () {
-        var sound = $("#tick");
-        sound[0].play();
-      },
-    endSound: function () {
-        var sound = $("#end");
-        sound[0].play();
-    },
-
     timeLeft: 30,
+    selected: 0,
+    score:0,
+    remaining: 5,
+    timeRunning: false,
+    intervalId:[],
 
     questionArray: [
         {
@@ -31,7 +26,7 @@ var trivia= {
                 c: { text: "C: Horse", correct: true },
             },
         },{
-            question: "Described as a female spirit in Irish Mythology who usually shrieks, or wailes to killt their vicitms, is known as what?",
+            question: "Described as a female spirit in Irish Mythology who usually shrieks, or wailes to kill their vicitms, is known as what?",
             answers:{
                 a: { text: "A: Bannik", correct: false },
                 b: { text: "B: Baba Yaga", correct: false },
@@ -53,37 +48,37 @@ var trivia= {
             },
         }
     ],
-    
-    
     startGame: function(){
         $("#start").click(function () {
             $("#start").hide('fast');
             $('.panel-default').show('slow');
             var intervalId;
-            start()
-            function start() {
-                clearInterval(intervalId);
-                intervalId = setInterval(decrement, 1000);
-            }
-            function decrement() {
-                trivia.timeLeft--;
-                trivia.tickSound();
-                $('#display').html(trivia.timeLeft);
-                if (trivia.timeLeft == 0) {
-                    trivia.endSound();
-                    timeOut();
-                    trivia.questionInput();
-                    trivia.startGame(start());
-                    $('#display').text("5")
-                    trivia.timeLeft = 30;
-                }
-            }
-            function timeOut() {
-                clearInterval(intervalId);
-            }
-            start();
+            trivia.start();
+            trivia.decrement();
             trivia.questionInput();
         })
+    },
+    start: function() {
+        if (trivia.timeRunning === false) {
+            intervalId: setInterval(trivia.decrement, 1000),
+            trivia.timeRunning = true;
+        }
+    },
+    stop: function () {
+        clearInterval(trivia.intervalId);
+        trivia.timeRunning = true;
+    },
+    decrement: function() {
+        if (trivia.timeLeft == 0 && trivia.timeRunning === true) {
+            $("#display").hide("fast");
+            $("#answerDisplay").show("fast");
+            $("#answerDisplay").html("Sorry that is incorrect!");
+            trivia.timeRunning = false;
+            setTimeout(trivia.pause, 1000 * 3);
+        }else {
+            trivia.timeLeft--;
+            $('#display').html(trivia.timeLeft);
+        }
     },
     
     questionInput: function() {
@@ -96,32 +91,52 @@ var trivia= {
         $("#answerB").attr("correct", randomQuestion.answers.b.correct);
         $("#answerC").html(randomQuestion.answers.c.text);
         $("#answerC").attr("correct", randomQuestion.answers.c.correct);
+        
     },
 
     answerSelect: function() {
-        $(".answers").click(function() {
-            console.log(this);
+        $(".answers").click(function() {           
             var val = $(this).attr("correct")
-            if (val == "true") {
-                alert("correct");
-                trivia.questionInput();
-            } else {
-                alert("wrong");
+            if (val == "true" && trivia.selected === 0) {
+                $("#answerDisplay").show("fast");
+                $("#answerDisplay").html("That is Correct!");
+                trivia.selected = 1;
+                $("#display").hide("fast");
+                trivia.score++;
+                trivia.remaining--;
+                setTimeout(trivia.pause, 1000 * 3);
+                trivia.stop();
+            } if (val == "false" && trivia.selected === 0) {
+                $("#display").hide("fast");
+                $("#answerDisplay").show("fast");
+                $("#answerDisplay").html("Sorry that is incorrect!");
+                trivia.selected = 1;
+                trivia.remaining--;
+                setTimeout(trivia.pause, 1000 * 3);
+
             }
-            
         })
-
-        
-    }
-
-
-
-
-
-
-
-
-
+    },
+    pause: function () {
+        if (trivia.remaining == 0) {
+            $("#display").hide("slow");
+            $("#answerA").hide("slow");
+            $("#answerB").hide("slow");
+            $("#answerC").hide("slow");
+            $("#answerDisplay").hide("fast");
+            $("#questionDisplay").html("You Have Finished, Score: " + trivia.score + " out of 5");
+            trivia.stop();
+            $(".front-btn").show("slow");
+        } else {
+        $("#answerDisplay").html("");
+        trivia.timeLeft = 31;
+        trivia.selected = 0;
+        trivia.questionInput();
+        trivia.stop();
+        $("#display").show("slow");
+        $('#display').text("30")
+        }
+    },
 
 }
 

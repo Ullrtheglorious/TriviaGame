@@ -28,7 +28,13 @@ body {
 }
 #display{
     text-align: center;
-    font-size: 10em;
+    font-size: 9em;
+}
+#answerDisplay {
+  text-align: center;
+  font-size: 4em;
+  margin-top: 50px;
+  display:none;
 }
 #questionDisplay {
     text-align: center;
@@ -38,12 +44,36 @@ body {
 .answers{
     cursor: pointer;
     font-size: 1.5em;
-    margin-top: 20px;
+    margin-top:25px;
     background-color: white;
     border: solid 1px black;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.514);
     padding: 5px;
+}
+.front-btn {
+    background: transparent;
+    border: .5px solid rgba(255, 255, 255, 0.733);
+    border-radius: 10px;
+    padding: 5px 20px;
+    text-align: center;
+    position:fixed;
+    top: 50%;
+    left: 45%;
+    display: none;
+    color: white;
+    cursor: pointer;
+    
+}
+a {
+    color:white;
+    text-decoration: none;
+}
+a:hover 
+{
+     color:white; 
+     text-decoration:none; 
+     cursor:pointer;  
 }
 
 
