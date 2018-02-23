@@ -6,7 +6,7 @@ var trivia= {
     timeLeft: 30,
     selected: 0,
     score:0,
-    remaining: 5,
+    remaining: 11,
     timeRunning: false,
     intervalId:[],
 
@@ -166,7 +166,7 @@ var trivia= {
             $("#answerB").hide("slow");
             $("#answerC").hide("slow");
             $("#answerDisplay").hide("fast");
-            $("#questionDisplay").html("You Have Finished, Score: " + trivia.score + " out of 5");
+            $("#questionDisplay").html("You Have Finished, Score: " + trivia.score + " out of 11");
             trivia.stop();
             $(".front-btn").show("slow");
         } else {
