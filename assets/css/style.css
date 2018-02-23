@@ -47,38 +47,6 @@ body {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*---------start css for glitch button ----------------------*/
 #start {
   text-align: center;
@@ -95,7 +63,7 @@ body {
   
   animation: glitch1 2.5s infinite;
   cursor: pointer;
-  margin-top: 80%;
+  margin-top: 60%;
   
   
 }
