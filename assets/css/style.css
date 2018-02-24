@@ -32,8 +32,8 @@ body {
 }
 #answerDisplay {
   text-align: center;
-  font-size: 4em;
-  margin-top: 50px;
+  font-size: 3em;
+  margin-top: 40px;
   display:none;
 }
 #questionDisplay {

@@ -9,10 +9,12 @@ var trivia= {
     remaining: 11,
     timeRunning: false,
     intervalId:[],
+    randomQuestion:[],
 
     questionArray: [
         {
             question: "A Sphinx, which is seen guarding the front of the Khafres Pyramid, is made up of which two distinguishing features?",
+            correctAnswer: "Half Lion, Half Human",
             answers: {
                 a: { text: "A: Half Lion, Half Human", correct: true}, 
                 b: { text: "B: Half Snake, Half Human", correct: false }, 
@@ -20,6 +22,7 @@ var trivia= {
             },
         },{
             question: "The Kelpie, a shape shifting water spirit inhabits local lochs and pools of Scotland, what shape is it more commonly known to appear as before luring victims to their death?",
+            correctAnswer: "Horse",
             answers:{
                 a: { text: "A: Dragon", correct: false },
                 b: { text: "B: Dolphin", correct: false },
@@ -27,6 +30,7 @@ var trivia= {
             },
         },{
             question: "Described as a female spirit in Irish Mythology who usually shrieks, or wailes to kill their vicitms, is known as what?",
+            correctAnswer: "Banshee",
             answers:{
                 a: { text: "A: Bannik", correct: false },
                 b: { text: "B: Baba Yaga", correct: false },
@@ -34,6 +38,7 @@ var trivia= {
             },
         },{
             question: "A Doppelganger is also known as what?",
+            correctAnswer: "An evil twin",
             answers: {
                 a:{ text: "A: An evil twin",  correct: true },
                 b:{ text: "B: A second cousin", correct: false },
@@ -41,6 +46,7 @@ var trivia= {
             },
         },{
             question: "A Wendigo,which is native to the nortern forests of the Atlantic Coast and Great Lakes Region, commonly eats what?",
+            correctAnswer: "Humans",
             answers:{
                 a:{ text: "A: Household pets", correct: false },
                 b:{ text: "B: Humans", correct: true },
@@ -48,6 +54,7 @@ var trivia= {
             },
         }, {
             question: "Roger Patterson and Bob Gimlin famously claimed to have caught which beast on video in 1967?",
+            correctAnswer: "Bigfoot",
             answers: {
                 a: { text: "A: Unicorn", correct: false },
                 b: { text: "B: Bigfoot", correct: true },
@@ -55,6 +62,7 @@ var trivia= {
             },
         }, {
             question: "Which of these is said to ward of Werewolves?",
+            correctAnswer: "Mistletoe",
             answers: {
                 a: { text: "A: Basil", correct: false },
                 b: { text: "B: Mistletoe", correct: true },
@@ -62,6 +70,7 @@ var trivia= {
             },
         }, {
             question: "In which of these locations would you most likey find the Kraken?",
+            correctAnswer: "The Ocean",
             answers: {
                 a: { text: "A: A Desert oasis", correct: false },
                 b: { text: "B: A Dark Forest", correct: false },
@@ -69,6 +78,7 @@ var trivia= {
             },
         }, {
             question: "Medusa's gaze could turn a man to stone, but what was her hair made out of?",
+            correctAnswer: "Snakes",
             answers: {
                 a: { text: "A: Stone", correct: false },
                 b: { text: "B: Snakes", correct: true },
@@ -76,6 +86,7 @@ var trivia= {
             },
         }, {
             question: "Which British Saint is best known for slaying a Dragon?",
+            correctAnswer: "St George",
             answers: {
                 a: { text: "A: St David", correct: false },
                 b: { text: "B: St George", correct: true },
@@ -83,6 +94,7 @@ var trivia= {
             },
         }, {
             question: "In which year was the first recorded sighting of Scotland's Loch Ness Monster?",
+            correctAnswer: "1933",
             answers: {
                 a: { text: "A: 1987", correct: false },
                 b: { text: "B: 1933", correct: true },
@@ -151,7 +163,7 @@ var trivia= {
             } if (val == "false" && trivia.selected === 0) {
                 $("#display").hide("fast");
                 $("#answerDisplay").show("fast");
-                $("#answerDisplay").html("Sorry that is incorrect!");
+                $("#answerDisplay").html("Wrong!, the correct answer is: " + randomQuestion.correctAnswer);
                 trivia.selected = 1;
                 trivia.remaining--;
                 setTimeout(trivia.pause, 1000 * 3);
