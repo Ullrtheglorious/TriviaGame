@@ -56,9 +56,9 @@ var trivia= {
         }, {
             question: "Which of these is said to ward of Werewolves?",
             answers: {
-                a: { text: "A: Household pets", correct: false },
-                b: { text: "B: Humans", correct: true },
-                c: { text: "C: Leftover food left out", correct: false },
+                a: { text: "A: Basil", correct: false },
+                b: { text: "B: Mistletoe", correct: true },
+                c: { text: "C: Garlic", correct: false },
             },
         }, {
             question: "In which of these locations would you most likey find the Kraken?",
@@ -133,7 +133,7 @@ var trivia= {
         $("#answerB").attr("correct", randomQuestion.answers.b.correct);
         $("#answerC").html(randomQuestion.answers.c.text);
         $("#answerC").attr("correct", randomQuestion.answers.c.correct);
-        trivia.questionArray.splice(trivia.randomQuestion, 1);
+        trivia.questionArray.splice(pickRandom, 1);
     },
 
     answerSelect: function() {
